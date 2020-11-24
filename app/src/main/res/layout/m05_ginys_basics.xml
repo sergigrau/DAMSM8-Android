@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--etiqueta 
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:text="Android"
+ />
+ -->
+
+<!-- imatge --> 
+<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+android:id="@+id/imatge"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:adjustViewBounds="true"
+android:src="@drawable/android"
+/>
+
+<!--EditText xmlns:android="http://schemas.android.com/apk/res/android"
+android:id="@+id/campText"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:singleLine="false"
+/>
+-->
