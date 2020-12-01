@@ -3,11 +3,12 @@ package edu.fje.dam2;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
-import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.util.Log;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Classe Activity que envia un intent
@@ -18,7 +19,7 @@ import android.view.View;
  *
  */
 
-public class M32_ContactesActivity extends Activity {
+public class M32_ContactesActivity extends AppCompatActivity {
 	static final int CODI_PETICIO = 1; 
 
 	@Override

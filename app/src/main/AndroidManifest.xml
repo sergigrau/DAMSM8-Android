@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="edu.fje.dam2">
 
-    uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
     <uses-permission android:name="android.permission.READ_CALENDAR" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -33,7 +33,7 @@
              </activity>-->
 
         <activity
-            android:name=".M31_CalendariAmpliatActivity"
+            android:name=".M17_CellesActivity"
             android:label="@string/nom_aplicacio">
             android:theme="@style/Theme.AppCompat.Light"
             <intent-filter>
