@@ -31,8 +31,22 @@ import org.json.JSONObject;
  * @version 2.0, 1/10/2020 actualització a API30
  */
 public class M36_ComunicacioJSONActivity extends AppCompatActivity {
+    //cal desactivar proxy d'Android
+    //cal posar a res/xml un fixter  res/xml/network_security_config.xml
+    /*
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">192.168.1.14</domain>
+    </domain-config>
+</network-security-config>
 
-    private static final String URL = " http://192.168.1.111/~MBP/dades.php?dades=" ;
+    //i afegir a manifest
+     <application
+    android:networkSecurityConfig="@xml/network_security_config"
+     */
+    private static final String URL = "http://172.20.16.207:8000/?nom=" ;
+
     private Button botoEnviar;
     private TextView nom;
 
@@ -73,6 +87,7 @@ public class M36_ComunicacioJSONActivity extends AppCompatActivity {
         try {
             dadesLLegides = llegirJSON();
             Log.i(M36_ComunicacioJSONActivity.class.getName(), dadesLLegides);
+            nom.setText(dadesLLegides);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -85,6 +100,7 @@ public class M36_ComunicacioJSONActivity extends AppCompatActivity {
                     + objecte.length());
             Log.i(M36_ComunicacioJSONActivity.class.getName(),
                     objecte.getString("nom"));
+
 
 
         } catch (Exception e) {
@@ -102,7 +118,7 @@ public class M36_ComunicacioJSONActivity extends AppCompatActivity {
 
     public String llegirJSON() throws IOException {
         StringBuilder builder = new StringBuilder();
-        URL urlObj = urlObj = new URL("http://192.168.1.111/~MBP/dades.json");
+        URL urlObj = urlObj = new URL("http://172.20.16.207:8000");
         HttpURLConnection clientHTTP = (HttpURLConnection) urlObj.openConnection();
 
         if (clientHTTP.getResponseCode() == 200) {
@@ -132,8 +148,5 @@ public class M36_ComunicacioJSONActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
     }
-
-
 }
