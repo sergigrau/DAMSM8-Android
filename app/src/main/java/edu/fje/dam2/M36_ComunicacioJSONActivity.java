@@ -24,7 +24,7 @@ import org.json.JSONObject;
 /**
  * Classe que utilitza la classe HTTPURLConnection, per a enviar i rebre dades
  * en format JSON. Els fitxers de backend es troben al directori /assets
- * el backend està desenvolupat en llenguatge PHP
+ * el backend està desenvolupat en llenguatge Python
  *
  * @author sergi.grau@fje.edu
  * @version 3.0 16.12.2016
@@ -37,7 +37,7 @@ public class M36_ComunicacioJSONActivity extends AppCompatActivity {
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
     <domain-config cleartextTrafficPermitted="true">
-        <domain includeSubdomains="true">192.168.1.14</domain>
+        <domain includeSubdomains="true">172.20.16.207</domain>
     </domain-config>
 </network-security-config>
 
@@ -72,8 +72,7 @@ public class M36_ComunicacioJSONActivity extends AppCompatActivity {
                 //enviar dades a Backend
                 try {
                     URL urlObj = new URL(URL+nom.getText().toString());
-                    HttpURLConnection clientHTTP = (HttpURLConnection) urlObj.openConnection();
-                    InputStream is = clientHTTP.getInputStream();
+                    nom.setText(llegirJSON(urlObj));
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
@@ -85,7 +84,8 @@ public class M36_ComunicacioJSONActivity extends AppCompatActivity {
 
         String dadesLLegides = null;
         try {
-            dadesLLegides = llegirJSON();
+            URL urlObj = new URL(URL);
+            dadesLLegides = llegirJSON(urlObj);
             Log.i(M36_ComunicacioJSONActivity.class.getName(), dadesLLegides);
             nom.setText(dadesLLegides);
         } catch (IOException e) {
@@ -116,9 +116,8 @@ public class M36_ComunicacioJSONActivity extends AppCompatActivity {
      */
 
 
-    public String llegirJSON() throws IOException {
+    public String llegirJSON(URL urlObj) throws IOException {
         StringBuilder builder = new StringBuilder();
-        URL urlObj = urlObj = new URL("http://172.20.16.207:8000");
         HttpURLConnection clientHTTP = (HttpURLConnection) urlObj.openConnection();
 
         if (clientHTTP.getResponseCode() == 200) {
