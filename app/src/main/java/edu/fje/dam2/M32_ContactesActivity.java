@@ -30,20 +30,21 @@ public class M32_ContactesActivity extends AppCompatActivity {
 
 	@Override
 	protected void onActivityResult(int codiPeticio, int resultCode, Intent data) {
-	    if (codiPeticio == CODI_PETICIO) {
-	        if (resultCode == RESULT_OK) {
-	            Uri contactUri = data.getData();
-	            String[] projeccio = {Phone.NUMBER};	    
-	            Cursor cursor = getContentResolver()
-	                    .query(contactUri, projeccio, null, null, null);
-	            cursor.moveToFirst();
+		super.onActivityResult(codiPeticio, resultCode, data);
+		if (codiPeticio == CODI_PETICIO) {
+			if (resultCode == RESULT_OK) {
+				Uri contactUri = data.getData();
+				String[] projeccio = {Phone.NUMBER};
+				Cursor cursor = getContentResolver()
+						.query(contactUri, projeccio, null, null, null);
+				cursor.moveToFirst();
 
-	            int columna = cursor.getColumnIndex(Phone.NUMBER);
-	            String nombre = cursor.getString(columna);
-	           
-	            Log.i("ContactesActivity", nombre);
-	        }
-	    }
+				int columna = cursor.getColumnIndex(Phone.NUMBER);
+				String nombre = cursor.getString(columna);
+
+				Log.i("ContactesActivity", nombre);
+			}
+		}
 	}
 	/*
 	@Override
