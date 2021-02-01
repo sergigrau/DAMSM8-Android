@@ -1,6 +1,8 @@
 package edu.fje.dam2;
 
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +18,7 @@ import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonObjectRequest;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -29,11 +32,14 @@ import org.json.JSONObject;
 
 public class M44_Volley_JSON extends AppCompatActivity {
 
+
+
     @Override
     protected void onCreate(Bundle instanciaDesada) {
         super.onCreate(instanciaDesada);
         setContentView(R.layout.m42_volley_basic);
         final TextView textSortida = (TextView) findViewById(R.id.sortida);
+
 
         RequestQueue cuaPeticions;
 
@@ -49,22 +55,21 @@ public class M44_Volley_JSON extends AppCompatActivity {
         // inici de la cua
         cuaPeticions.start();
 
-        String url = "http:/192.168.1.14:8000";
+        String url ="http:/192.168.1.14:8000?nom=SERGI";
 
         JsonObjectRequest peticioJSON = new JsonObjectRequest
-                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject resposta) {
-                        textSortida.setText("resposta: " + resposta.toString());
+                (Request.Method.GET, url, null, resposta -> {
+                    try {
+                        textSortida.setText("resposta: " + resposta.getString("data"));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                }, new Response.ErrorListener() {
+                }, error -> {
+                    textSortida.setText("problema:");
+                    error.printStackTrace();
+                }
 
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // TODO: gestió error
-                    }
-                });
+);
         cuaPeticions.add(peticioJSON);
 
     }
