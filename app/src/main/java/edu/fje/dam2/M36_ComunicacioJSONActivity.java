@@ -45,7 +45,7 @@ public class M36_ComunicacioJSONActivity extends AppCompatActivity {
      <application
     android:networkSecurityConfig="@xml/network_security_config"
      */
-    private static final String URL = "http://172.20.16.207:8000/?nom=" ;
+    private static final String URL = "http:/192.168.1.14:8000/?nom=" ;
 
     private Button botoEnviar;
     private TextView nom;

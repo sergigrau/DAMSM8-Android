@@ -49,7 +49,7 @@ public class M44_Volley_JSON extends AppCompatActivity {
         // inici de la cua
         cuaPeticions.start();
 
-        String url = "http://192.168.1.104/~MBP/dades.json";
+        String url = "http:/192.168.1.14:8000";
 
         JsonObjectRequest peticioJSON = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {

@@ -47,7 +47,7 @@ public class M43_Volley_CuaPeticions extends AppCompatActivity {
         // inici de la cua
         cuaPeticions.start();
 
-        String url ="http://www.fje.edu";
+        String url ="http:/192.168.1.14:8000";
 
         // petició i gestió asícrona de la resposta.
         StringRequest peticio = new StringRequest(Request.Method.GET, url,

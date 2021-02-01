@@ -30,7 +30,7 @@ public class M42_VolleyBasicActivity extends AppCompatActivity {
         final TextView textSortida = (TextView) findViewById(R.id.sortida);
 
         RequestQueue cuaPeticions = Volley.newRequestQueue(this);
-        String url ="http://www.google.com";
+        String url ="http:/192.168.1.14:8000";
 
         StringRequest cadenaPeticio = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
