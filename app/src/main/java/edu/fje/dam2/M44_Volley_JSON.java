@@ -56,9 +56,15 @@ public class M44_Volley_JSON extends AppCompatActivity {
         cuaPeticions.start();
 
         String url ="http:/192.168.1.14:8000?nom=SERGI";
+        JSONObject json= new JSONObject();
+        try {
+             json.put("nom","sergi");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         JsonObjectRequest peticioJSON = new JsonObjectRequest
-                (Request.Method.GET, url, null, resposta -> {
+                (Request.Method.GET, url, json, resposta -> {
                     try {
                         textSortida.setText("resposta: " + resposta.getString("data"));
                     } catch (JSONException e) {
