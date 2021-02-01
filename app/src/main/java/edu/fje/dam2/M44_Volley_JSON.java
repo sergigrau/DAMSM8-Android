@@ -25,7 +25,7 @@ import org.json.JSONObject;
  *
  * @author sergi.grau@fje.edu
  * @version 1.0 26.11.2018
- * @version 2.0, 1/10/2020 actualització a API30
+ * @version 2.0, 1/1/2021 actualització a API30
  */
 
 public class M44_Volley_JSON extends AppCompatActivity {
