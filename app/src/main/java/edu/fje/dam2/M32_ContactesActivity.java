@@ -3,12 +3,11 @@ package edu.fje.dam2;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.util.Log;
 import android.view.View;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Classe Activity que envia un intent
@@ -19,7 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
  *
  */
 
-public class M32_ContactesActivity extends AppCompatActivity {
+public class M32_ContactesActivity extends Activity {
 	static final int CODI_PETICIO = 1; 
 
 	@Override
@@ -30,21 +29,20 @@ public class M32_ContactesActivity extends AppCompatActivity {
 
 	@Override
 	protected void onActivityResult(int codiPeticio, int resultCode, Intent data) {
-		super.onActivityResult(codiPeticio, resultCode, data);
-		if (codiPeticio == CODI_PETICIO) {
-			if (resultCode == RESULT_OK) {
-				Uri contactUri = data.getData();
-				String[] projeccio = {Phone.NUMBER};
-				Cursor cursor = getContentResolver()
-						.query(contactUri, projeccio, null, null, null);
-				cursor.moveToFirst();
+	    if (codiPeticio == CODI_PETICIO) {
+	        if (resultCode == RESULT_OK) {
+	            Uri contactUri = data.getData();
+	            String[] projeccio = {Phone.NUMBER};	    
+	            Cursor cursor = getContentResolver()
+	                    .query(contactUri, projeccio, null, null, null);
+	            cursor.moveToFirst();
 
-				int columna = cursor.getColumnIndex(Phone.NUMBER);
-				String nombre = cursor.getString(columna);
-
-				Log.i("ContactesActivity", nombre);
-			}
-		}
+	            int columna = cursor.getColumnIndex(Phone.NUMBER);
+	            String nombre = cursor.getString(columna);
+	           
+	            Log.i("ContactesActivity", nombre);
+	        }
+	    }
 	}
 	/*
 	@Override

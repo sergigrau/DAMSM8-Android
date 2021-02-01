@@ -30,10 +30,21 @@ public class M42_VolleyBasicActivity extends AppCompatActivity {
         final TextView textSortida = (TextView) findViewById(R.id.sortida);
 
         RequestQueue cuaPeticions = Volley.newRequestQueue(this);
-        String url ="http://192.168.1.14:8000";
+        String url ="http://www.google.com";
 
         StringRequest cadenaPeticio = new StringRequest(Request.Method.GET, url,
-                resposta -> textSortida.setText("La resposta és: "+ resposta), error -> textSortida.setText("no funciona!"));
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String resposta) {
+                        // Mostra els primers 500 caràcters
+                        textSortida.setText("La resposta és: "+ resposta.substring(0,500));
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                textSortida.setText("no funciona!");
+            }
+        });
 
         cuaPeticions.add(cadenaPeticio);
     }

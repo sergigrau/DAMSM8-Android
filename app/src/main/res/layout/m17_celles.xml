@@ -19,7 +19,6 @@
         android:horizontalSpacing="5dip"
         android:numColumns="2"
         android:stretchMode="columnWidth"
-        android:verticalSpacing="40dip"
-        android:clickable="true" />
+        android:verticalSpacing="40dip" />
 
 </LinearLayout>

@@ -39,26 +39,24 @@ public class M26_ClientTCPActivity extends AppCompatActivity {
 				.permitAll().build();
 		StrictMode.setThreadPolicy(politiques);
 
-		setContentView(R.layout.m26_client_tcp);
-		TextView tv = findViewById(R.id.tv);
 		String res = "ERROR";
 		try {
 
-			Socket s = new Socket("192.168.1.14", 8000);
+			Socket s = new Socket("192.168.1.13", 12345);
 			System.out.println("C: Connectat al servidor" + s.toString());
 			PrintWriter out = new PrintWriter(s.getOutputStream(), true);
 			BufferedReader in = new BufferedReader(new InputStreamReader(
 					s.getInputStream()));
 
-			out.println("{'nom':'sergi'}");
-
+			out.println("SERGI");
 			res = in.readLine();
 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
-
-		tv.setText("C: " + res.toString());
+		TextView tv = new TextView(this);
+		tv.setText("C: " + res);
+		setContentView(tv);
 	}
 }

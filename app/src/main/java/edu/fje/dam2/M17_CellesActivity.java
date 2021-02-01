@@ -21,7 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
  * @version 2.0, 1/10/2020 actualització a API30
  */
 
-public class M17_CellesActivity extends AppCompatActivity {
+public class M17_CellesActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 	private TextView seleccio;
 	private  String[] items = { "pomes", "peres", "taronges",
 			"plàtans", "pinyes", "mango", "llimones" };
@@ -33,12 +33,17 @@ public class M17_CellesActivity extends AppCompatActivity {
 		seleccio = (TextView) findViewById(R.id.seleccio);
 		GridView g = (GridView) findViewById(R.id.grid);
 		g.setAdapter(new ArrayAdapter<String>(this, R.layout.m17_definicio_cella, items));
-		g.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				Log.v("dam2", items[position]);
-				seleccio.setText(items[position]);
-			}
-		});
+		g.setOnItemSelectedListener(this);
+	}
+	
+	 @Override
+	public void onItemSelected(AdapterView<?> parent, View v, int position,
+			long id) {
+		Log.v("dam2", items[position]);
+		seleccio.setText(items[position]);
+	}
+	 @Override
+	public void onNothingSelected(AdapterView<?> parent) {
+		seleccio.setText("");
 	}
 }

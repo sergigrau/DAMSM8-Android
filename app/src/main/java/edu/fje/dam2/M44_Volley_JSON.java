@@ -16,7 +16,6 @@ import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonObjectRequest;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -50,20 +49,21 @@ public class M44_Volley_JSON extends AppCompatActivity {
         // inici de la cua
         cuaPeticions.start();
 
-        String url ="http://192.168.1.14:8000";
+        String url = "http://192.168.1.104/~MBP/dades.json";
 
         JsonObjectRequest peticioJSON = new JsonObjectRequest
-                (Request.Method.GET, url, null, resposta ->
-                {
-                    try {
-                        textSortida.setText("resposta: " + resposta.getString("data"));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject resposta) {
+                        textSortida.setText("resposta: " + resposta.toString());
                     }
-                },
-                        error -> {
-                            System.out.println(error.toString());
-                            textSortida.setText("problema");
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // TODO: gestió error
+                    }
                 });
         cuaPeticions.add(peticioJSON);
 
