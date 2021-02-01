@@ -30,7 +30,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.UF1Material">
-        <activity android:name=".M36_ComunicacioJSONActivity">
+        <activity android:name=".M43_Volley_CuaPeticions">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

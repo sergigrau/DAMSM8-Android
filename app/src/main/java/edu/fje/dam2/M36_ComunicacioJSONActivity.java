@@ -14,6 +14,7 @@ import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,7 +29,7 @@ import org.json.JSONObject;
  *
  * @author sergi.grau@fje.edu
  * @version 3.0 16.12.2016
- * @version 2.0, 1/10/2020 actualització a API30
+ * @version 4.0, 10.1.2021 actualització a API30
  */
 public class M36_ComunicacioJSONActivity extends AppCompatActivity {
     //cal desactivar proxy d'Android
@@ -48,7 +49,8 @@ public class M36_ComunicacioJSONActivity extends AppCompatActivity {
     private static final String URL = "http:/192.168.1.14:8000/?nom=" ;
 
     private Button botoEnviar;
-    private TextView nom;
+    private TextView text;
+    private EditText nom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +66,8 @@ public class M36_ComunicacioJSONActivity extends AppCompatActivity {
         setContentView(R.layout.m34_connexio_http);
 
         botoEnviar = (Button) findViewById(R.id.botoEnviar) ;
-        nom = (TextView) findViewById(R.id.nom) ;
+        text = (TextView) findViewById(R.id.text) ;
+        nom = (EditText) findViewById(R.id.nom) ;
 
         botoEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,7 +75,7 @@ public class M36_ComunicacioJSONActivity extends AppCompatActivity {
                 //enviar dades a Backend
                 try {
                     URL urlObj = new URL(URL+nom.getText().toString());
-                    nom.setText(llegirJSON(urlObj));
+                    text.setText(llegirJSON(urlObj));
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
@@ -87,7 +90,7 @@ public class M36_ComunicacioJSONActivity extends AppCompatActivity {
             URL urlObj = new URL(URL);
             dadesLLegides = llegirJSON(urlObj);
             Log.i(M36_ComunicacioJSONActivity.class.getName(), dadesLLegides);
-            nom.setText(dadesLLegides);
+            text.setText(dadesLLegides);
         } catch (IOException e) {
             e.printStackTrace();
         }

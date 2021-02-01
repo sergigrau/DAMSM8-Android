@@ -17,7 +17,7 @@ import com.android.volley.toolbox.StringRequest;
  *
  * @author sergi.grau@fje.edu
  * @version 1.0 26.11.2018
- * @version 2.0, 1/10/2020 actualització a API30
+ * @version 2.0, 10.1.21 actualització a API30
 
  */
 
@@ -36,8 +36,7 @@ public class M42_VolleyBasicActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String resposta) {
-                        // Mostra els primers 500 caràcters
-                        textSortida.setText("La resposta és: "+ resposta.substring(0,500));
+                        textSortida.setText("La resposta és: "+ resposta);
                     }
                 }, new Response.ErrorListener() {
             @Override
