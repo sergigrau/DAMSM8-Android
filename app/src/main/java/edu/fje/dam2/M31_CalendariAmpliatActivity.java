@@ -1,7 +1,9 @@
 package edu.fje.dam2;
 
+import android.Manifest;
 import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,6 +13,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -33,10 +37,50 @@ public class M31_CalendariAmpliatActivity extends AppCompatActivity {
     private ContentResolver contentResolver;
     private Set<String> calendaris = new HashSet<String>();
     private List<String> events = new ArrayList<String>();
+    private static final int PERMISSIONS_REQUEST_READ_CALENDARS = 100;
+    private static final int PERMISSIONS_REQUEST_WRITE_CALENDARS = 200;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.READ_CALENDAR)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.READ_CALENDAR)) {
+
+
+            } else {
+
+
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.READ_CALENDAR},
+                        PERMISSIONS_REQUEST_READ_CALENDARS);
+            }
+        }
+
+
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.WRITE_CALENDAR)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.WRITE_CALENDAR)) {
+
+
+            } else {
+
+
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.WRITE_CALENDAR},
+                        PERMISSIONS_REQUEST_WRITE_CALENDARS);
+            }
+        }
+
+
         setContentView(R.layout.m30_calendari);
         contentResolver = getContentResolver();
     }
