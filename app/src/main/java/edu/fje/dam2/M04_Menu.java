@@ -26,9 +26,10 @@ public class M04_Menu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.m04_menu);
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinator);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //Toolbar toolbar = findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -46,18 +47,25 @@ public class M04_Menu extends AppCompatActivity {
             case R.id.cercar:
                 cercar();
                 return true;
+            case R.id.about:
+                about();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
     private void obrirAjustos() {
-        Snackbar.make(coordinatorLayout, "AJUSTOS", Snackbar.LENGTH_LONG)
+        Snackbar.make(coordinatorLayout, "AJUSTOS", Snackbar.LENGTH_SHORT)
                 .setAction("Action", null).show();
     }
 
     private void cercar() {
         Snackbar.make(coordinatorLayout, "CERCAR", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
+    }
+    private void about() {
+        Snackbar.make(coordinatorLayout, "ABOUT", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
     }
 }
