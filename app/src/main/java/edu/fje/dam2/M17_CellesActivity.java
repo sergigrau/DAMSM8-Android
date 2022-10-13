@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 /**
  * Classe que hereta de la classe Activity i que mostra com
  * utilitzar un giny GridView per a mostrar diverses opcions en forma de graella
- * Implementa la interfície  AdapterView.OnItemSelectedListener 
+ * Implementa la interfície  AdapterView.OnItemSelectedListener
  * Es defineix un descriptor XML per cadascuna de les cel·les, el qual és un TextView
  * Utilitza un ArrayAdapter que permet utilitzar el patró MVC
  * @author sergi.grau@fje.edu
@@ -21,29 +21,26 @@ import androidx.appcompat.app.AppCompatActivity;
  * @version 2.0, 1/10/2020 actualització a API30
  */
 
-public class M17_CellesActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-	private TextView seleccio;
-	private  String[] items = { "pomes", "peres", "taronges",
-			"plàtans", "pinyes", "mango", "llimones" };
+public class M17_CellesActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+    private TextView seleccio;
+    private  String[] items = { "pomes", "peres", "taronges",
+            "plàtans", "pinyes", "mango", "llimones" };
 
-	@Override
-	protected void onCreate(Bundle icicle) {
-		super.onCreate(icicle);
-		setContentView(R.layout.m17_celles);
-		seleccio = (TextView) findViewById(R.id.seleccio);
-		GridView g = (GridView) findViewById(R.id.grid);
-		g.setAdapter(new ArrayAdapter<String>(this, R.layout.m17_definicio_cella, items));
-		g.setOnItemSelectedListener(this);
-	}
-	
-	 @Override
-	public void onItemSelected(AdapterView<?> parent, View v, int position,
-			long id) {
-		Log.v("dam2", items[position]);
-		seleccio.setText(items[position]);
-	}
-	 @Override
-	public void onNothingSelected(AdapterView<?> parent) {
-		seleccio.setText("");
-	}
+    @Override
+    protected void onCreate(Bundle icicle) {
+        super.onCreate(icicle);
+        setContentView(R.layout.m17_celles);
+        seleccio = (TextView) findViewById(R.id.seleccio);
+        GridView g = (GridView) findViewById(R.id.grid);
+        g.setAdapter(new ArrayAdapter<String>(this, R.layout.m17_definicio_cella, items));
+        g.setOnItemClickListener(this);
+    }
+
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        System.out.println("hola");
+        Log.v("sortida", items[i]);
+        seleccio.setText(items[i]);
+    }
 }
