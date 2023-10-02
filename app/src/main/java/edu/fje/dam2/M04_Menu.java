@@ -1,4 +1,4 @@
-package edu.fje.dam2;
+package edu.fje.android;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -26,10 +26,9 @@ public class M04_Menu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.m04_menu);
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinator);
-        //Toolbar toolbar = findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -39,20 +38,15 @@ public class M04_Menu extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-
-            case R.id.ajustos:
-                obrirAjustos();
-                return true;
-            case R.id.cercar:
-                cercar();
-                return true;
-            case R.id.about:
-                about();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+       if(item.getItemId()==R.id.ajustos){
+           obrirAjustos();
+           return true;
+       }
+        if(item.getItemId()==R.id.cercar){
+            cercar();
+            return true;
         }
+        return false;
     }
 
     private void obrirAjustos() {
